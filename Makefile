@@ -1,10 +1,11 @@
 NAME				:= philo
 
 HEADER_PATH			:= ./includes
-HEADER_FILES		:= philo.h
+HEADER_FILES		:= philo.h internals.h
 
-SOURCE_PATH			:= ./sources
-SOURCE_FILES		:= main.c
+SOURCE_DIRS			:= . utils init
+SOURCE_PATH			:= $(addprefix ./sources/, $(SOURCE_DIRS))
+SOURCE_FILES		:= main.c ft_atoi.c ft_isdigit.c init_data.c
 
 OBJECT_PATH			:= ./objects
 OBJECT_FILES		:= $(SOURCE_FILES:%.c=$(OBJECT_PATH)/%.o)

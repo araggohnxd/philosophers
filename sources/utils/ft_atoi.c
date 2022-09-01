@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 17:49:07 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/01 18:47:28 by maolivei         ###   ########.fr       */
+/*   Created: 2022/09/01 18:38:21 by maolivei          #+#    #+#             */
+/*   Updated: 2022/09/01 18:39:10 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+static int	ft_isspace(int c)
 {
-	t_data	data;
+	return ((c >= 9 && c <= 13) || c == 32);
+}
 
-	init_data(&data, argc, argv);
-	return (0);
+int	ft_atoi(const char *nptr)
+{
+	int	is_neg;
+	int	result;
+
+	while (ft_isspace(*nptr))
+		nptr++;
+	is_neg = 1;
+	if (*nptr == '-' || *nptr == '+')
+		if (*nptr++ == '-')
+			is_neg = -1;
+	result = 0;
+	while (ft_isdigit(*nptr))
+		result = (result * 10) + (*nptr++ - '0');
+	return (result * is_neg);
 }

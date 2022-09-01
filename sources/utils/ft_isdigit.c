@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 17:49:07 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/01 18:47:28 by maolivei         ###   ########.fr       */
+/*   Created: 2022/09/01 18:39:17 by maolivei          #+#    #+#             */
+/*   Updated: 2022/09/01 18:39:22 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+int	ft_isdigit(int c)
 {
-	t_data	data;
-
-	init_data(&data, argc, argv);
-	return (0);
+	return (c >= '0' && c <= '9');
 }

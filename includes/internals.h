@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   internals.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 17:49:07 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/01 18:47:28 by maolivei         ###   ########.fr       */
+/*   Created: 2022/09/01 18:49:34 by maolivei          #+#    #+#             */
+/*   Updated: 2022/09/01 18:50:02 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#ifndef INTERNALS_H
+# define INTERNALS_H
 
-int	main(int argc, char **argv)
+# include <pthread.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+
+typedef struct s_data
 {
-	t_data	data;
+	int	number_of_philosophers;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	must_eat;
+}	t_data;
 
-	init_data(&data, argc, argv);
-	return (0);
-}
+#endif /* INTERNALS_H */
