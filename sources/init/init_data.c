@@ -6,13 +6,13 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:47:42 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/01 18:47:51 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/09/01 19:05:27 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	check_argument_value(char **argv)
+static int	check_argument_value(char **argv)
 {
 	size_t	i;
 	size_t	j;
@@ -26,15 +26,16 @@ static void	check_argument_value(char **argv)
 			if (!ft_isdigit(argv[i][j]))
 			{
 				printf("philo: %s: invalid argument\n", argv[i]);
-				exit(EXIT_FAILURE);
+				return (FAILURE);
 			}
 			++j;
 		}
 		++i;
 	}
+	return (SUCCESS);
 }
 
-static void	check_argument_count(int argc)
+static int	check_argument_count(int argc)
 {
 	if (argc < 5 || argc > 6)
 	{
@@ -48,14 +49,15 @@ static void	check_argument_count(int argc)
 			"<time-to-eat> "
 			"<time-to-sleep> "
 			"[times-each-philo-must-eat]\n");
-		exit(EXIT_FAILURE);
+		return (FAILURE);
 	}
+	return (SUCCESS);
 }
 
-void	init_data(t_data *data, int argc, char **argv)
+int	init_data(t_data *data, int argc, char **argv)
 {
-	check_argument_count(argc);
-	check_argument_value(argv);
+	if (!check_argument_count(argc) || !check_argument_value(argv))
+		return (FAILURE);
 	data->number_of_philosophers = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
@@ -63,4 +65,5 @@ void	init_data(t_data *data, int argc, char **argv)
 	data->must_eat = 0;
 	if (argc == 6)
 		data->must_eat = ft_atoi(argv[5]);
+	return (SUCCESS);
 }

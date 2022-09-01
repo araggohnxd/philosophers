@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:49:34 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/01 18:50:02 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/09/01 19:03:51 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+
+typedef enum e_status
+{
+	FAILURE,
+	SUCCESS
+}	t_status;
 
 typedef struct s_data
 {
