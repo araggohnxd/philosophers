@@ -6,36 +6,26 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:47:42 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/01 19:05:27 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:00:02 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	check_argument_value(char **argv)
+static t_status	check_argument_value(char **argv)
 {
-	size_t	i;
-	size_t	j;
-
-	i = 1;
-	while (argv[i])
+	while (*(++argv))
 	{
-		j = 0;
-		while (argv[i][j])
+		if (!ft_is_valid_number_str(*argv))
 		{
-			if (!ft_isdigit(argv[i][j]))
-			{
-				printf("philo: %s: invalid argument\n", argv[i]);
-				return (FAILURE);
-			}
-			++j;
+			printf("philo: %s: invalid argument\n", *argv);
+			return (FAILURE);
 		}
-		++i;
 	}
 	return (SUCCESS);
 }
 
-static int	check_argument_count(int argc)
+static t_status	check_argument_count(int argc)
 {
 	if (argc < 5 || argc > 6)
 	{
@@ -54,7 +44,7 @@ static int	check_argument_count(int argc)
 	return (SUCCESS);
 }
 
-int	init_data(t_data *data, int argc, char **argv)
+t_status	init_data(t_data *data, int argc, char **argv)
 {
 	if (!check_argument_count(argc) || !check_argument_value(argv))
 		return (FAILURE);

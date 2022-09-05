@@ -5,7 +5,9 @@ HEADER_FILES		:= philo.h internals.h
 
 SOURCE_DIRS			:= . utils init
 SOURCE_PATH			:= $(addprefix ./sources/, $(SOURCE_DIRS))
-SOURCE_FILES		:= main.c ft_atoi.c ft_isdigit.c init_data.c
+SOURCE_FILES		:= main.c
+SOURCE_FILES		+= init_data.c
+SOURCE_FILES		+= ft_atoi.c ft_isdigit.c ft_is_valid_number_str.c
 
 OBJECT_PATH			:= ./objects
 OBJECT_FILES		:= $(SOURCE_FILES:%.c=$(OBJECT_PATH)/%.o)
