@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isnumber_str.c                                  :+:      :+:    :+:   */
+/*   ft_is_valid_number_str.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 10:45:25 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/05 11:00:10 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:36:30 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 t_bool	ft_is_valid_number_str(const char *str)
 {
+	const char	*start = (char *)str;
+
 	if (*str == '-')
 		return (FALSE);
 	if (*str == '+')
@@ -21,5 +23,7 @@ t_bool	ft_is_valid_number_str(const char *str)
 	while (*str)
 		if (!ft_isdigit(*str++))
 			return (FALSE);
+	if (ft_atoi(start) == 0)
+		return (FALSE);
 	return (TRUE);
 }

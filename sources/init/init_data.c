@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:47:42 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/05 11:00:02 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:37:13 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static t_status	check_argument_value(char **argv)
 	{
 		if (!ft_is_valid_number_str(*argv))
 		{
-			printf("philo: %s: invalid argument\n", *argv);
+			printf("philo: `%s': invalid argument\n", *argv);
 			return (FAILURE);
 		}
 	}
