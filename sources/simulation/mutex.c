@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mutex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 17:49:07 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/27 21:06:28 by maolivei         ###   ########.fr       */
+/*   Created: 2022/09/26 19:30:21 by maolivei          #+#    #+#             */
+/*   Updated: 2022/09/26 19:30:27 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+void	ft_mutex_unlock(t_mutex *mutex)
 {
-	t_data	data;
+	pthread_mutex_unlock(&mutex->mutex);
+	mutex->is_locked = FALSE;
+}
 
-	if (init_data(&data, argc, argv) != 0)
-		return (EXIT_FAILURE);
-	if (init_forks(&data) != 0)
-		return (EXIT_FAILURE);
-	if (init_philos(&data) != 0)
-		return (EXIT_FAILURE);
-	run_simulation(&data);
-	destroy_data(&data);
-	return (EXIT_SUCCESS);
+void	ft_mutex_lock(t_mutex *mutex)
+{
+	pthread_mutex_lock(&mutex->mutex);
+	mutex->is_locked = TRUE;
 }

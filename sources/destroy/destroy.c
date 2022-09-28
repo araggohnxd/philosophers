@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 17:49:07 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/27 21:06:28 by maolivei         ###   ########.fr       */
+/*   Created: 2022/09/05 12:18:16 by maolivei          #+#    #+#             */
+/*   Updated: 2022/09/27 20:45:49 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+void	destroy_data(t_data *data)
 {
-	t_data	data;
+	size_t	index;
 
-	if (init_data(&data, argc, argv) != 0)
-		return (EXIT_FAILURE);
-	if (init_forks(&data) != 0)
-		return (EXIT_FAILURE);
-	if (init_philos(&data) != 0)
-		return (EXIT_FAILURE);
-	run_simulation(&data);
-	destroy_data(&data);
-	return (EXIT_SUCCESS);
+	index = 0;
+	while (index < data->num_of_philosophers)
+		pthread_mutex_destroy(&(data->forks[index++].mutex));
+	free(data->forks);
+	free(data->philosophers);
 }

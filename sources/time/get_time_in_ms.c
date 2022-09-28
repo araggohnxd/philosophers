@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_time_in_ms.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 17:49:07 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/27 21:06:28 by maolivei         ###   ########.fr       */
+/*   Created: 2022/09/26 16:27:26 by maolivei          #+#    #+#             */
+/*   Updated: 2022/09/26 16:57:14 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+t_time	get_time_in_ms(void)
 {
-	t_data	data;
+	t_timeval	timeval;
 
-	if (init_data(&data, argc, argv) != 0)
-		return (EXIT_FAILURE);
-	if (init_forks(&data) != 0)
-		return (EXIT_FAILURE);
-	if (init_philos(&data) != 0)
-		return (EXIT_FAILURE);
-	run_simulation(&data);
-	destroy_data(&data);
-	return (EXIT_SUCCESS);
+	gettimeofday(&timeval, NULL);
+	return (((timeval.tv_sec * 1000000) + timeval.tv_usec) / 1000);
 }
