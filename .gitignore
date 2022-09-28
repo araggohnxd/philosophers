@@ -52,7 +52,6 @@ Mkfile.old
 dkms.conf
 
 # Custom files
-philo
 .normignore
 test*
 
