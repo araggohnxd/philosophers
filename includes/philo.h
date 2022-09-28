@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 17:49:11 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/27 21:05:48 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/09/27 21:20:11 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ int		init_philos(t_data *data);
 
 /* Simulation */
 void	run_simulation(t_data *data);
-
-/* Thread routine */
-void	*cogito_ergo_sum(void *data);
 
 /* Actions */
 void	philo_eat(t_philo *philo);
@@ -49,7 +46,7 @@ t_bool	ft_is_valid_number_str(const char *str);
 void	ft_mutex_lock(t_mutex *mutex);
 void	ft_mutex_unlock(t_mutex *mutex);
 
-/* Actions utilities */
+/* Thread utilities */
 void	sweet_dreams(t_philo *philo, t_time sleep_time);
 void	print_action(t_philo *philo, const char *action);
 

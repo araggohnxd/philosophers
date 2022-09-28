@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.c                                          :+:      :+:    :+:   */
+/*   print_action.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 16:59:46 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/27 20:54:50 by maolivei         ###   ########.fr       */
+/*   Created: 2022/09/27 21:14:02 by maolivei          #+#    #+#             */
+/*   Updated: 2022/09/27 21:18:00 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,14 @@ void	sweet_dreams(t_philo *philo, t_time sleep_time)
 	}
 }
 
-void	*cogito_ergo_sum(void *data)
+void	ft_mutex_unlock(t_mutex *mutex)
 {
-	t_philo	*philo;
+	pthread_mutex_unlock(&mutex->mutex);
+	mutex->is_locked = FALSE;
+}
 
-	philo = (t_philo *)data;
-	if (philo->philo_id % 2)
-		mssleep(50);
-	philo->last_meal = philo->data->kickstart;
-	while (!philo->data->has_someone_died)
-	{
-		philo_eat(philo);
-		if (philo->data->must_eat > 0 \
-		&& philo->done_meals >= philo->data->must_eat)
-			break ;
-		philo_sleep(philo);
-		philo_think(philo);
-	}
-	return (NULL);
+void	ft_mutex_lock(t_mutex *mutex)
+{
+	pthread_mutex_lock(&mutex->mutex);
+	mutex->is_locked = TRUE;
 }

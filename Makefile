@@ -10,7 +10,8 @@ SOURCE_FILES		+= init_data.c init_forks.c init_philos.c
 SOURCE_FILES		+= ft_atoi.c ft_isdigit.c ft_is_valid_number_str.c
 SOURCE_FILES		+= destroy.c
 SOURCE_FILES		+= get_time_in_ms.c get_elapsed_time.c mssleep.c
-SOURCE_FILES		+= simulation.c routine.c mutex.c actions.c eat.c
+SOURCE_FILES		+= simulation.c eat.c sleep.c think.c die.c
+SOURCE_FILES		+= thread_utils.c
 
 OBJECT_PATH			:= ./objects
 OBJECT_FILES		:= $(SOURCE_FILES:%.c=$(OBJECT_PATH)/%.o)
@@ -51,8 +52,5 @@ run:				all
 
 vg:					all
 					$(VALGRIND) $(VGFLAGS) ./$(NAME) $(ARGV)
-
-test:
-					bash test.sh
 
 .PHONY:				all clean fclean re run vg
