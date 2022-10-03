@@ -17,6 +17,8 @@ static void	*cogito_ergo_sum(void *content)
 	t_philo	*philo;
 
 	philo = (t_philo *)content;
+	if (philo->philo_id % 2)
+		usleep(500);
 	while (philo_eat(philo) && philo_sleep(philo) && philo_think(philo))
 		continue ;
 	return (NULL);
