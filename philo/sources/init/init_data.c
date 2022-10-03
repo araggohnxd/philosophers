@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:47:42 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/27 21:08:36 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:35:47 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,9 @@ int	init_data(t_data *data, int argc, char **argv)
 		data->must_eat = ft_atoi(argv[5]);
 	else
 		data->must_eat = -1;
+	if (pthread_mutex_init(&data->end_lock, NULL) != 0)
+		return (-1);
+	if (pthread_mutex_init(&data->print_lock, NULL) != 0)
+		return (-1);
 	return (0);
 }

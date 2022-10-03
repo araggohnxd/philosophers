@@ -6,13 +6,13 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:27:26 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/26 16:57:14 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/09/30 14:29:33 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_time	get_time_in_ms(void)
+time_t	get_time_in_ms(void)
 {
 	t_timeval	timeval;
 

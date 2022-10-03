@@ -8,7 +8,7 @@ SOURCE_PATH			:= $(addprefix ./sources/, $(SOURCE_DIRS))
 SOURCE_FILES		:= main.c
 SOURCE_FILES		+= init_data.c init_forks.c init_philos.c
 SOURCE_FILES		+= ft_atoi.c ft_isdigit.c ft_is_valid_number_str.c
-SOURCE_FILES		+= destroy.c
+SOURCE_FILES		+= ft_strcmp.c destroy.c
 SOURCE_FILES		+= get_time_in_ms.c get_elapsed_time.c mssleep.c
 SOURCE_FILES		+= simulation.c eat.c sleep.c think.c die.c
 SOURCE_FILES		+= thread_utils.c
@@ -23,10 +23,15 @@ LDFLAGS				:= -pthread
 REMOVE				:= rm -rf
 VALGRIND			:= valgrind
 VGFLAGS				:= --leak-check=full --show-leak-kinds=all
+# VGFLAGS				:= --tool=helgrind
 ARGV				:= 2 800 200 200 3
 
 vpath				%.c $(SOURCE_PATH)
 vpath				%.h $(HEADER_PATH)
+
+ifdef DEBUG
+	CFLAGS += -g3 -fsanitize=thread
+endif
 
 all:				$(NAME)
 

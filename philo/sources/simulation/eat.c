@@ -6,72 +6,66 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 19:15:53 by maolivei          #+#    #+#             */
-/*   Updated: 2022/09/27 20:54:35 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:15:18 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	drop_forks_back_to_table(t_philo *philo)
+static void	lonely_philo(t_philo *philo)
 {
-	if (philo->fork_left->is_locked)
-		ft_mutex_unlock(philo->fork_left);
-	if (philo->fork_right->is_locked)
-		ft_mutex_unlock(philo->fork_right);
-	return (-1);
+	print_action(philo, "has taken a fork");
+	mssleep(philo->data->time_to_die);
+	philo_die(philo);
 }
 
-static int	take_a_fork(t_philo *philo, t_mutex *fork)
+static void	drop_forks_back_to_table(t_philo *philo)
 {
-	while (fork->is_locked)
-	{
-		if (philo->data->has_someone_died)
-			return (drop_forks_back_to_table(philo));
-		if (get_elapsed_time(philo->last_meal) >= philo->data->time_to_die)
-		{
-			philo_die(philo);
-			return (drop_forks_back_to_table(philo));
-		}
-		usleep(100);
-	}
-	if (philo->data->has_someone_died)
-		return (drop_forks_back_to_table(philo));
-	ft_mutex_lock(fork);
-	print_action(philo, "has taken a fork");
-	return (0);
+	pthread_mutex_unlock(philo->fork_right);
+	pthread_mutex_unlock(philo->fork_left);
 }
 
 static int	take_forks_from_table(t_philo *philo)
 {
-	while (philo->fork_left->is_locked || philo->fork_right->is_locked)
+	t_mutex	*first_to_take;
+	t_mutex	*last_to_take;
+
+	if (philo->philo_id % 2 == 0)
 	{
-		if (philo->data->has_someone_died)
-			return (-1);
-		if (get_elapsed_time(philo->last_meal) >= philo->data->time_to_die)
-			return (philo_die(philo), -1);
-		usleep(100);
+		first_to_take = philo->fork_right;
+		last_to_take = philo->fork_left;
 	}
-	if (take_a_fork(philo, philo->fork_left) != 0)
+	else
+	{
+		first_to_take = philo->fork_left;
+		last_to_take = philo->fork_right;
+	}
+	if (has_simulation_ended(philo->data))
 		return (-1);
-	if (take_a_fork(philo, philo->fork_right) != 0)
-		return (-1);
+	if (get_elapsed_time(philo->last_meal) >= philo->data->time_to_die)
+		return (philo_die(philo), -1);
+	if (first_to_take == last_to_take)
+		return (lonely_philo(philo), -1);
+	pthread_mutex_lock(first_to_take);
+	print_action(philo, "has taken a fork");
+	pthread_mutex_lock(last_to_take);
+	print_action(philo, "has taken a fork");
 	return (0);
 }
 
-void	philo_eat(t_philo *philo)
+t_bool	philo_eat(t_philo *philo)
 {
-	if (philo->data->has_someone_died)
-		return ;
+	if (has_simulation_ended(philo->data))
+		return (FALSE);
 	if (take_forks_from_table(philo) != 0)
-		return ;
+		return (FALSE);
+	print_action(philo, "is eating");
+	if (sweet_dreams(philo, philo->data->time_to_eat) != 0)
+		return (drop_forks_back_to_table(philo), FALSE);
+	drop_forks_back_to_table(philo);
 	++philo->done_meals;
 	philo->last_meal = get_time_in_ms();
-	if (philo->data->has_someone_died)
-	{
-		drop_forks_back_to_table(philo);
-		return ;
-	}
-	print_action(philo, "is eating");
-	sweet_dreams(philo, philo->data->time_to_eat);
-	drop_forks_back_to_table(philo);
+	if (philo->done_meals == philo->data->must_eat)
+		return (FALSE);
+	return (TRUE);
 }
