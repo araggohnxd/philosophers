@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:59:06 by maolivei          #+#    #+#             */
-/*   Updated: 2022/10/03 16:15:44 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:35:46 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ static void	*cogito_ergo_sum(void *content)
 	t_philo	*philo;
 
 	philo = (t_philo *)content;
-	// if (philo->philo_id % 2)
-	// 	usleep(100);
 	while (philo_eat(philo) && philo_sleep(philo) && philo_think(philo))
 		continue ;
 	return (NULL);
