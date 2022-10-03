@@ -23,14 +23,14 @@ LDFLAGS				:= -pthread
 REMOVE				:= rm -rf
 VALGRIND			:= valgrind
 VGFLAGS				:= --leak-check=full --show-leak-kinds=all
-# VGFLAGS				:= --tool=helgrind
-ARGV				:= 2 800 200 200 3
+ARGV				:= 5 800 200 200 7
 
 vpath				%.c $(SOURCE_PATH)
 vpath				%.h $(HEADER_PATH)
 
 ifdef DEBUG
 	CFLAGS += -g3 -fsanitize=thread
+	VGFLAGS := --tool=helgrind
 endif
 
 all:				$(NAME)
