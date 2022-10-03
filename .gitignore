@@ -55,7 +55,6 @@ dkms.conf
 .normignore
 test*
 philo
-*.sh
 
 # Custom directories
 .vscode/
