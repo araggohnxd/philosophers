@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 21:14:02 by maolivei          #+#    #+#             */
-/*   Updated: 2022/10/03 16:15:05 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/10/04 12:54:15 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_action(t_philo *philo, const char *action)
 {
 	const time_t	elapsed_time = get_elapsed_time(philo->data->kickstart);
 
-	if (ft_strcmp(action, "has died") != 0 && has_simulation_ended(philo->data))
+	if (ft_strcmp(action, "died") != 0 && has_simulation_ended(philo->data))
 		return ;
 	pthread_mutex_lock(&philo->data->print_lock);
 	printf("%5ld %3d %s\n", elapsed_time, (philo->philo_id + 1), action);
