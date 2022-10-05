@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 19:15:53 by maolivei          #+#    #+#             */
-/*   Updated: 2022/10/05 00:24:29 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:15:10 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,24 @@ static void	drop_forks_back_to_table(t_philo *philo)
 	sem_post(philo->data->forks);
 }
 
+static int	wait_fork(t_philo *philo)
+{
+	if (get_elapsed_time(philo->last_meal) >= philo->data->time_to_die)
+		return (philo_die(philo), -1);
+	usleep(100);
+	return (0);
+}
+
 static int	take_forks_from_table(t_philo *philo)
 {
 	while (*(long *)philo->data->forks < 2)
-	{
-		if (get_elapsed_time(philo->last_meal) >= philo->data->time_to_die)
-			return (philo_die(philo), -1);
-		usleep(100);
-	}
+		if (wait_fork(philo) != 0)
+			return (-1);
 	sem_wait(philo->data->forks);
 	print_action(philo, "has taken a fork");
 	while (*(long *)philo->data->forks < 1)
-	{
-		if (get_elapsed_time(philo->last_meal) >= philo->data->time_to_die)
-		{
-			philo_die(philo);
-			sem_post(philo->data->forks);
-			return (-1);
-		}
-		usleep(100);
-	}
+		if (wait_fork(philo) != 0)
+			return (sem_post(philo->data->forks), -1);
 	sem_wait(philo->data->forks);
 	print_action(philo, "has taken a fork");
 	return (0);
