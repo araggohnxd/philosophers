@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:49:34 by maolivei          #+#    #+#             */
-/*   Updated: 2022/10/04 21:54:31 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:37:28 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <sys/time.h>
+
+# define SEM_FORKS "/forks"
+# define SEM_END "/end_lock"
+# define SEM_PRINT "/print_lock"
+# define SEM_OVER "/end_of_simulation"
 
 typedef struct s_data	t_data;
 typedef struct s_philo	t_philo;

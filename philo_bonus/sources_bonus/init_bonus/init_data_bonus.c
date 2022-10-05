@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:47:42 by maolivei          #+#    #+#             */
-/*   Updated: 2022/10/04 21:54:29 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:38:08 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ int	init_data(t_data *data, int argc, char **argv)
 		data->must_eat = ft_atoi(argv[5]);
 	else
 		data->must_eat = -1;
-	data->forks = create_semaphore("/forks", data->num_of_philosophers);
-	data->end_lock = create_semaphore("/end_lock", 1);
-	data->print_lock = create_semaphore("/print_lock", 1);
-	data->end_of_simulation = create_semaphore("/end_of_simulation", 0);
+	data->forks = create_semaphore(SEM_FORKS, data->num_of_philosophers);
+	data->end_lock = create_semaphore(SEM_END, 1);
+	data->print_lock = create_semaphore(SEM_PRINT, 1);
+	data->end_of_simulation = create_semaphore(SEM_OVER, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:18:16 by maolivei          #+#    #+#             */
-/*   Updated: 2022/10/04 22:04:20 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:39:00 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	destroy_philo(t_data *data)
 
 void	destroy_data(t_data *data)
 {
-	destroy_semaphore("/forks", data->forks);
-	destroy_semaphore("/end_lock", data->end_lock);
-	destroy_semaphore("/print_lock", data->print_lock);
-	destroy_semaphore("/end_of_simulation", data->end_of_simulation);
+	destroy_semaphore(SEM_FORKS, data->forks);
+	destroy_semaphore(SEM_END, data->end_lock);
+	destroy_semaphore(SEM_PRINT, data->print_lock);
+	destroy_semaphore(SEM_OVER, data->end_of_simulation);
 	free(data->philosophers);
 }
