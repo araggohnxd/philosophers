@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME=philo
+NAME=philo_bonus
 PATH=./
 EXEC=${PATH}${NAME}
 

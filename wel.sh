@@ -1,11 +1,11 @@
 #!/bin/bash
 
 ## PATH VARS
-BIN_PATH=./philo
-MAKEFILE_PATH=./philo
+BIN_PATH=./philo_bonus
+MAKEFILE_PATH=./philo_bonus
 ## UNCOMMENT BONUS TESTS IF NEEDED
-# BONUS_BIN_PATH=philo_bonus/philo_bonus
-# BONUS_MAKEFILE_PATH=philo_bonus
+# BONUS_BIN_PATH=./philo_bonus
+# BONUS_MAKEFILE_PATH=./philo_bonus
 
 ## TEST PARAMETERS - CHANGE AS NEEDED
 NB_OF_TESTS=1

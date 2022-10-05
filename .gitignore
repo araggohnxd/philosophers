@@ -55,7 +55,9 @@ dkms.conf
 .normignore
 test*
 philo
+philo_bonus
 
 # Custom directories
 .vscode/
 !philo/
+!philo_bonus/
