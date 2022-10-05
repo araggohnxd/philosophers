@@ -5,13 +5,11 @@ HEADER_FILES		:= philo.h internals.h
 
 SOURCE_DIRS			:= . utils init error destroy time simulation
 SOURCE_PATH			:= $(addprefix ./sources/, $(SOURCE_DIRS))
-SOURCE_FILES		:= main.c
-SOURCE_FILES		+= init_data.c init_forks.c init_philos.c
+SOURCE_FILES		:= main.c init_data.c init_forks.c init_philos.c
 SOURCE_FILES		+= ft_atoi.c ft_isdigit.c ft_is_valid_number_str.c
-SOURCE_FILES		+= ft_strcmp.c destroy.c
-SOURCE_FILES		+= get_time_in_ms.c get_elapsed_time.c mssleep.c
-SOURCE_FILES		+= simulation.c eat.c sleep.c think.c die.c
-SOURCE_FILES		+= thread_utils.c
+SOURCE_FILES		+= ft_strcmp.c destroy.c  mssleep.c get_elapsed_time.c
+SOURCE_FILES		+= get_time_in_ms.c eat.c sleep.c think.c die.c
+SOURCE_FILES		+= simulation.c thread_utils.c
 
 OBJECT_PATH			:= ./objects
 OBJECT_FILES		:= $(SOURCE_FILES:%.c=$(OBJECT_PATH)/%.o)

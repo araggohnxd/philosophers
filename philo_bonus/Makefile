@@ -3,15 +3,15 @@ NAME				:= philo_bonus
 HEADER_PATH			:= ./includes_bonus
 HEADER_FILES		:= philo_bonus.h internals_bonus.h
 
-SOURCE_DIRS			:= . utils_bonus init_bonus error_bonus destroy_bonus time_bonus simulation_bonus
+SOURCE_DIRS			:= . utils_bonus init_bonus error_bonus destroy_bonus
+SOURCE_DIRS			+= time_bonus simulation_bonus
 SOURCE_PATH			:= $(addprefix ./sources_bonus/, $(SOURCE_DIRS))
-SOURCE_FILES		:= main_bonus.c
-SOURCE_FILES		+= init_data_bonus.c init_philos_bonus.c
-SOURCE_FILES		+= ft_atoi_bonus.c ft_isdigit_bonus.c ft_is_valid_number_str_bonus.c
-SOURCE_FILES		+= ft_strcmp_bonus.c destroy_bonus.c
-SOURCE_FILES		+= get_time_in_ms_bonus.c get_elapsed_time_bonus.c mssleep_bonus.c
-SOURCE_FILES		+= simulation_bonus.c eat_bonus.c sleep_bonus.c think_bonus.c die_bonus.c
-SOURCE_FILES		+= thread_utils_bonus.c
+SOURCE_FILES		:= init_data_bonus.c init_philos_bonus.c main_bonus.c
+SOURCE_FILES		+= ft_isdigit_bonus.c ft_is_valid_number_str_bonus.c
+SOURCE_FILES		+= ft_strcmp_bonus.c ft_atoi_bonus.c destroy_bonus.c
+SOURCE_FILES		+= get_time_in_ms_bonus.c get_elapsed_time_bonus.c
+SOURCE_FILES		+= mssleep_bonus.c simulation_bonus.c thread_utils_bonus.c
+SOURCE_FILES		+= sleep_bonus.c think_bonus.c die_bonus.c eat_bonus.c
 
 OBJECT_PATH			:= ./objects_bonus
 OBJECT_FILES		:= $(SOURCE_FILES:%.c=$(OBJECT_PATH)/%.o)
