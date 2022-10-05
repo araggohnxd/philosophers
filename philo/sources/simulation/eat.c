@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 19:15:53 by maolivei          #+#    #+#             */
-/*   Updated: 2022/10/03 16:15:18 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:50:13 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ static int	take_forks_from_table(t_philo *philo)
 		return (-1);
 	if (get_elapsed_time(philo->last_meal) >= philo->data->time_to_die)
 		return (philo_die(philo), -1);
-	if (first_to_take == last_to_take)
-		return (lonely_philo(philo), -1);
 	pthread_mutex_lock(first_to_take);
 	print_action(philo, "has taken a fork");
 	pthread_mutex_lock(last_to_take);
@@ -55,6 +53,8 @@ static int	take_forks_from_table(t_philo *philo)
 
 t_bool	philo_eat(t_philo *philo)
 {
+	if (philo->data->num_of_philosophers == 1)
+		return (lonely_philo(philo), -1);
 	if (has_simulation_ended(philo->data))
 		return (FALSE);
 	if (take_forks_from_table(philo) != 0)
