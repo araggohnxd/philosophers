@@ -6,11 +6,18 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 19:15:53 by maolivei          #+#    #+#             */
-/*   Updated: 2022/10/05 13:15:10 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:49:01 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
+
+static void	lonely_philo(t_philo *philo)
+{
+	print_action(philo, "has taken a fork");
+	mssleep(philo->data->time_to_die);
+	philo_die(philo);
+}
 
 static void	drop_forks_back_to_table(t_philo *philo)
 {
@@ -43,6 +50,8 @@ static int	take_forks_from_table(t_philo *philo)
 
 t_bool	philo_eat(t_philo *philo)
 {
+	if (philo->data->num_of_philosophers == 1)
+		return (lonely_philo(philo), -1);
 	if (has_simulation_ended(philo->data))
 		return (FALSE);
 	if (take_forks_from_table(philo) != 0)

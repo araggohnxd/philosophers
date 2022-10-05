@@ -6,7 +6,7 @@
 /*   By: maolivei <maolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 17:49:11 by maolivei          #+#    #+#             */
-/*   Updated: 2022/10/05 00:11:45 by maolivei         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:45:47 by maolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	destroy_data(t_data *data);
 void	destroy_philo(t_data *data);
 
 /* Time */
+void	mssleep(time_t time_to_sleep);
 time_t	get_time_in_ms(void);
 time_t	get_elapsed_time(time_t then);
 

@@ -9,7 +9,7 @@ SOURCE_FILES		:= main_bonus.c
 SOURCE_FILES		+= init_data_bonus.c init_philos_bonus.c
 SOURCE_FILES		+= ft_atoi_bonus.c ft_isdigit_bonus.c ft_is_valid_number_str_bonus.c
 SOURCE_FILES		+= ft_strcmp_bonus.c destroy_bonus.c
-SOURCE_FILES		+= get_time_in_ms_bonus.c get_elapsed_time_bonus.c
+SOURCE_FILES		+= get_time_in_ms_bonus.c get_elapsed_time_bonus.c mssleep_bonus.c
 SOURCE_FILES		+= simulation_bonus.c eat_bonus.c sleep_bonus.c think_bonus.c die_bonus.c
 SOURCE_FILES		+= thread_utils_bonus.c
 
